@@ -8,6 +8,7 @@ public class restaurant {
 	private int rating;
 	private int deliveryTime;
 	private int isActive;
+	private byte[] restaurantImage;
 	public int getRestaurantId() {
 		return restaurantId;
 	}
@@ -50,6 +51,13 @@ public class restaurant {
 	public void setIsActive(int isActive) {
 		this.isActive = isActive;
 	}
+	public byte[] getRestaurantImage() {
+		return restaurantImage;
+	}
+	public void setRestaurantImage(byte[] restaurantImage) {
+		this.restaurantImage = restaurantImage;
+	}
+	
 	public restaurant(int restaurantId,String name, String cusineType, String address, int rating,int deliveryTime, int isActive) {
 		super();
 		this.restaurantId = restaurantId;
@@ -64,10 +72,34 @@ public class restaurant {
 		super();
 	}
 
+	public restaurant(String name, String cusineType, String address, int rating, int deliveryTime, int isActive,
+			byte[] restaurantImage) {
+		super();
+		this.name = name;
+		this.cusineType = cusineType;
+		this.address = address;
+		this.rating = rating;
+		this.deliveryTime = deliveryTime;
+		this.isActive = isActive;
+		this.restaurantImage = restaurantImage;
+	}
+	public restaurant(int restaurantId, String name, String cusineType, String address, int rating, int deliveryTime,
+			int isActive, byte[] restaurantImage) {
+		super();
+		this.restaurantId = restaurantId;
+		this.name = name;
+		this.cusineType = cusineType;
+		this.address = address;
+		this.rating = rating;
+		this.deliveryTime = deliveryTime;
+		this.isActive = isActive;
+		this.restaurantImage = restaurantImage;
+	}
 	@Override
 	public String toString() {
-	    return restaurantId + ", " + name + ", " + cusineType + ", " + address + ", " + rating + ", " + deliveryTime + ", " + isActive;
+	    return restaurantId + ", " + name + ", " + cusineType + ", " + address + ", " + rating + ", " + deliveryTime + ", " + isActive+","+restaurantImage;
 	}
+
 
 	
 }

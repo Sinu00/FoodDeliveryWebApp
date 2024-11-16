@@ -1,12 +1,15 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DeliByte Login</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <title>DeliByte - Login/Signup</title>
     <style>
+        /* Reset and Base Styles */
         * {
             margin: 0;
             padding: 0;
@@ -14,298 +17,350 @@
         }
 
         body {
+            font-family: "Poppins", sans-serif;
+            background-color: #FFF8E7;
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 1rem;
-            background: linear-gradient(to bottom right, white, #f3f4f6);
-            font-family: system-ui, -apple-system, sans-serif;
+            padding: 16px;
         }
 
-        main {
+        /* Container Styles */
+        .container {
+            max-width: 1000px;
             width: 100%;
-            max-width: 28rem;
+            margin: 0 auto;
+            display: flex;
             background: white;
-            border-radius: 1rem;
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
-                        0 10px 10px -5px rgba(0, 0, 0, 0.04);
-            padding: 2rem;
-            position: relative;
+            border-radius: 24px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             overflow: hidden;
         }
 
-        .background-image {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 11.4rem;
-            background-color: #FF3B30;
-            opacity: 0.1;
-            background-image: url('https://images.unsplash.com/photo-1504674900247-0877df9cc836');
-            background-size: cover;
-            background-position: center;
+        /* Image Section */
+        .auth-image {
+            flex: 1;
+            background-color: #E6F7F1;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
         }
 
-        .content {
-            position: relative;
-            z-index: 10;
+        .auth-image img {
+            max-width: 80%;
+            height: 330px;
+            margin-bottom: 24px;
+            border-radius: 12px 0 0 12px;
         }
 
-        h1 {
-            font-size: 1.875rem;
-            font-weight: bold;
-            color: #333333;
-            margin-bottom: 0.5rem;
+        .auth-image h2 {
+            color: #00A082;
+            margin-bottom: 16px;
+            font-size: 1.8rem;
+        }
+        
+		.auth-image h2 span {
+            color: black;
         }
 
-        .subtitle {
+        .auth-image p {
             color: #4b5563;
-            margin-bottom: 2rem;
+            font-size: 1rem;
         }
 
-        .form-group {
-            margin-bottom: 1.5rem;
+        /* Form Section */
+        .auth-form {
+            flex: 1;
+            padding: 40px;
+            background: white;
         }
 
-        label {
-            display: block;
-            font-size: 0.875rem;
-            font-weight: 500;
-            color: #374151;
-            margin-bottom: 0.5rem;
-        }
-
-        .input-wrapper {
-            position: relative;
-        }
-
-        input {
-            width: 100%;
-            padding: 0.75rem 1rem;
-            border-radius: 0.5rem;
-            border: 1px solid #d1d5db;
-            outline: none;
-            transition: all 0.2s;
-        }
-
-        input:focus {
-            border-color: transparent;
-            box-shadow: 0 0 0 2px #FF3B30;
-        }
-
-        .error-message {
-            display: none;
-            color: #ef4444;
-            font-size: 0.875rem;
-            margin-top: 0.25rem;
-        }
-
-        .toggle-password {
-            position: absolute;
-            right: 0.75rem;
-            top: 50%;
-            transform: translateY(-50%);
-            background: none;
-            border: none;
-            color: #6b7280;
-            cursor: pointer;
-        }
-
-        .toggle-password:hover {
-            color: #374151;
-        }
-
-        .submit-button {
-            width: 100%;
-            background-color: #FF3B30;
-            color: white;
-            padding: 0.75rem 1.5rem;
-            border-radius: 0.5rem;
-            font-weight: 500;
-            border: none;
-            cursor: pointer;
+        .logo {
             display: flex;
             align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-            transition: all 0.2s;
+            gap: 8px;
+            margin-bottom: 32px;
         }
 
-        .submit-button:hover {
-            background-color: #e63529;
-            transform: scale(0.98);
+        .logo h1 {
+            font-size: 1.8rem;
+            color: #00A082;
         }
 
-        .submit-button:focus {
+        /* Form Elements */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #374151;
+            font-weight: 500;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.2s;
+        }
+
+        .form-group input:focus {
             outline: none;
-            box-shadow: 0 0 0 2px white, 0 0 0 4px #FF3B30;
+            border-color: #00A082;
         }
 
-        .spinner {
-            display: none;
-            animation: spin 1s linear infinite;
+        .remember-forgot {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
         }
 
-        @keyframes spin {
-            from {
-                transform: rotate(0deg);
-            }
-            to {
-                transform: rotate(360deg);
-            }
+        .remember-me {
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
-        .toggle-form {
+        .forgot-password {
+            color: #00A082;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .auth-button {
+            width: 100%;
+            padding: 12px;
+            background-color: #00A082;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .auth-button:hover {
+            background-color: #008068;
+        }
+
+        .auth-switch {
+            margin-top: 24px;
             text-align: center;
-            font-size: 0.875rem;
-            color: #4b5563;
-            margin-top: 1.5rem;
+            color: #6b7280;
         }
 
-        .toggle-form a {
-            color: #FF3B30;
+        .auth-switch a {
+            color: #00A082;
             text-decoration: none;
             font-weight: 500;
         }
 
-        .toggle-form a:hover {
-            text-decoration: underline;
+        /* Form Tabs */
+        .form-tabs {
+            display: flex;
+            margin-bottom: 32px;
+            border-bottom: 2px solid #e5e7eb;
         }
 
-        #signupForm {
-            display: none;
+        .tab {
+            flex: 1;
+            padding: 12px;
+            text-align: center;
+            cursor: pointer;
+            color: #6b7280;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        .tab.active {
+            color: #00A082;
+            border-bottom: 2px solid #00A082;
+            margin-bottom: -2px;
+        }
+
+        /* Error Message */
+        .error-message {
+            color: #dc2626;
+            font-size: 0.9rem;
+            margin-top: 4px;
+        }
+
+        /* Success Message */
+        .success-message {
+            color: #00A082;
+            font-size: 0.9rem;
+            margin-top: 4px;
+        }
+
+        /* Responsive Design */
+        @media screen and (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .auth-image {
+                padding: 24px;
+            }
+
+            .auth-form {
+                padding: 24px;
+            }
+
+            .auth-image h2 {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .form-tabs {
+                flex-direction: column;
+                border-bottom: none;
+            }
+
+            .tab {
+                border: 1px solid #e5e7eb;
+                margin-bottom: 8px;
+                border-radius: 8px;
+            }
+
+            .tab.active {
+                border-color: #00A082;
+                margin-bottom: 8px;
+            }
+
+            .remember-forgot {
+                flex-direction: column;
+                gap: 12px;
+                align-items: flex-start;
+            }
+            
+            .auth-image img{
+            	display:none;
+            }
+            
+            .auth-form .logo h1{
+            	display:none;
+            }
+            
+			.auth-button {
+            	border-radius: 18px;
+            	height:45px;
+      		}
         }
     </style>
 </head>
 <body>
-    <main>
-        <div class="background-image"></div>
-        
-        <div class="content">
-            <h1>Welcome to DeliByte</h1>
-            <p class="subtitle" id="formSubtitle">Login to order delicious food</p>
-            
-            <form id="loginForm" method="post" action="UserLogin">
+    <div class="container">
+        <div class="auth-image">
+            <img src="https://res.cloudinary.com/drc2ky0yw/image/upload/v1731738944/download_1_qtb1up.jpg" alt="Food delivery illustration">
+            <h2>Welcome to<span> DeliByte</span></h2>
+            <p>Your favorite restaurants, delivered to your doorstep</p>
+        </div>
+
+        <div class="auth-form">
+            <div class="logo">
+                <h1>DeliByte</h1>
+            </div>
+
+            <div class="form-tabs">
+                <div class="tab active" onclick="switchTab('login')">Login</div>
+                <div class="tab" onclick="switchTab('signup')">Sign Up</div>
+            </div>
+
+            <!-- Login Form -->
+            <form id="loginForm" action="UserLogin" method="post">
                 <div class="form-group">
-                    <label for="loginEmail">Email Address</label>
-                    <div class="input-wrapper">
-                        <input type="email" id="loginEmail" name="loginEmail" required
-                            placeholder="your@email.com"
-                            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
-                            autocomplete="email">
-                        <div class="error-message" id="loginEmailError">Please enter a valid email address</div>
-                    </div>
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="Email" required>
                 </div>
 
                 <div class="form-group">
-                    <label for="loginPassword">Password</label>
-                    <div class="input-wrapper">
-                        <input type="password" id="loginPassword" name="loginPassword" required
-                            placeholder="Enter your password"
-                            minlength="8"
-                            autocomplete="current-password">
-                        <button type="button" class="toggle-password" onclick="togglePasswordVisibility('loginPassword')">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                            </svg>
-                        </button>
-                        <div class="error-message" id="loginPasswordError">Password must be at least 8 characters</div>
-                    </div>
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="Password" required>
                 </div>
 
-                <button type="submit" class="submit-button">
-                    <span>Login</span>
-                </button>
+                <div class="remember-forgot">
+                    <label class="remember-me">
+                        <input type="checkbox" name="remember">
+                        Remember me
+                    </label>
+                    <a href="#" class="forgot-password">Forgot password?</a>
+                </div>
 
-                <p class="toggle-form">Don't have an account? 
-                    <a href="#" onclick="toggleForms(event)">Sign up</a>
-                </p>
+                <button type="submit" class="auth-button">Login</button>
             </form>
 
-            <form id="signupForm" method="post" action="UserRegister">
+            <!-- Signup Form (hidden by default) -->
+            <form id="signupForm" action="UserRegister" method="post" style="display: none;">
                 <div class="form-group">
-                    <label for="signupName">UserName</label>
-                    <div class="input-wrapper">
-                        <input type="text" id="signupName" name="username" required
-                            placeholder="Enter your full name"
-                            autocomplete="name">
-                        <div class="error-message" id="signupNameError">Please enter your name</div>
-                    </div>
+                    <label for="fullName">UserName</label>
+                    <input type="text" id="fullName" name="username" required>
                 </div>
-                <div class="form-group">
-                    <label for="signupName">Mobile Number</label>
-                    <div class="input-wrapper">
-                        <input type="text" id="signupName" name="mobilenumber" required
-                            placeholder="Enter your full name "
-                            autocomplete="name">
-                        <div class="error-message" id="signupNameError">Please enter your mobile number</div>
-                    </div>
+                
+				<div class="form-group">
+                    <label for="mobilenumber">Mobile Number</label>
+                    <input type="number" id="signupEmail" name="mobilenumber" required>
                 </div>
 
                 <div class="form-group">
-                    <label for="signupEmail">Email Address</label>
-                    <div class="input-wrapper">
-                        <input type="email" id="signupEmail" name="signupEmail" required
-                            placeholder="your@email.com"
-                            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
-                            autocomplete="email">
-                        <div class="error-message" id="signupEmailError">Please enter a valid email address</div>
-                    </div>
+                    <label for="signupEmail">Email</label>
+                    <input type="email" id="signupEmail" name="Email" required>
                 </div>
 
                 <div class="form-group">
                     <label for="signupPassword">Password</label>
-                    <div class="input-wrapper">
-                        <input type="password" id="signupPassword" name="signupPassword" required
-                            placeholder="Enter your password"
-                            minlength="8"
-                            autocomplete="new-password">
-                        <button type="button" class="toggle-password" onclick="togglePasswordVisibility('signupPassword')">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                            </svg>
-                        </button>
-                        <div class="error-message" id="signupPasswordError">Password must be at least 8 characters</div>
-                    </div>
+                    <input type="password" id="signupPassword" name="Password" required>
                 </div>
 
-                <button type="submit" class="submit-button">
-                    <span>Sign Up</span>
-                </button>
+                <div class="form-group">
+                    <label for="confirmPassword">Confirm Password</label>
+                    <input type="password" id="confirmPassword" name="confirmPassword" required>
+                </div>
 
-                <p class="toggle-form">Already have an account? 
-                    <a href="#" onclick="toggleForms(event)">Login</a>
-                </p>
+                <button type="submit" class="auth-button">Create Account</button>
             </form>
         </div>
-    </main>
+    </div>
 
     <script>
-        function togglePasswordVisibility(inputId) {
-            const input = document.getElementById(inputId);
-            input.type = input.type === 'password' ? 'text' : 'password';
-        }
-
-        function toggleForms(event) {
-            event.preventDefault();
+        function switchTab(tab) {
             const loginForm = document.getElementById('loginForm');
             const signupForm = document.getElementById('signupForm');
-            const subtitle = document.getElementById('formSubtitle');
+            const tabs = document.querySelectorAll('.tab');
 
-            if (loginForm.style.display === 'none') {
+            tabs.forEach(t => t.classList.remove('active'));
+            
+            if (tab === 'login') {
                 loginForm.style.display = 'block';
                 signupForm.style.display = 'none';
-                subtitle.textContent = 'Login to order delicious food';
+                tabs[0].classList.add('active');
             } else {
                 loginForm.style.display = 'none';
                 signupForm.style.display = 'block';
-                subtitle.textContent = 'Create an account to start ordering';
+                tabs[1].classList.add('active');
             }
         }
+
+        // Form validation
+        document.getElementById('signupForm').addEventListener('submit', function(e) {
+            const password = document.getElementById('signupPassword').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+
+            if (password !== confirmPassword) {
+                e.preventDefault();
+                alert('Passwords do not match!');
+            }
+        });
     </script>
 </body>
 </html>

@@ -70,7 +70,7 @@ public class restaurantDAOImpl implements restaurantDAO {
 			stmt = con.createStatement();
 			resultSet=stmt.executeQuery(FETCH_ALL_QUERY);
 			while(resultSet.next()) {
-				restaurantList.add(new restaurant(resultSet.getInt("restaurantId"),resultSet.getString("name"),resultSet.getString("cusineType") , resultSet.getString("address"), resultSet.getInt("ratings"),resultSet.getInt("deliverytime"),resultSet.getInt("isActive")));
+				restaurantList.add(new restaurant(resultSet.getInt("restaurantId"),resultSet.getString("name"),resultSet.getString("cusineType") , resultSet.getString("address"), resultSet.getInt("ratings"),resultSet.getInt("deliverytime"),resultSet.getInt("isActive"),resultSet.getBytes("image")));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

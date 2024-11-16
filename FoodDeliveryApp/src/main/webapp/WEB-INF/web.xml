@@ -24,4 +24,14 @@
     <servlet-name>UserRegister</servlet-name>
     <url-pattern>/UserRegister</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>GetAllRestaurants</display-name>
+    <servlet-name>GetAllRestaurants</servlet-name>
+    <servlet-class>com.fda.servlets.GetAllRestaurants</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GetAllRestaurants</servlet-name>
+    <url-pattern>/GetAllRestaurants</url-pattern>
+  </servlet-mapping>
 </web-app>

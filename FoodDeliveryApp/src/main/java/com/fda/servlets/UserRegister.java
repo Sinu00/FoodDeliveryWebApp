@@ -18,13 +18,14 @@ public class UserRegister extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String signupUsername=req.getParameter("username");
 		int signupMobile =Integer.parseInt(req.getParameter("mobilenumber"));
-		String signupEmail = req.getParameter("signupEmail");
-		String signupPassword= req.getParameter("signupPassword");
+		String signupEmail = req.getParameter("Email");
+		String signupPassword= req.getParameter("Password");
 		
 		user user = new user(signupUsername,signupEmail,signupPassword,signupMobile);
 		userDAO userdao = new userDAOImpl();
 		
 		userdao.insertUser(user);
 		
+		req.getRequestDispatcher("UserLogin").forward(req, resp);
 	}
 }

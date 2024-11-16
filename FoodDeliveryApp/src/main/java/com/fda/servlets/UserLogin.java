@@ -26,8 +26,8 @@ public class UserLogin extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		//fetching email and password from user login form
-		String userEmail = req.getParameter("loginEmail");
-		String userPassword =req.getParameter("loginPassword");
+		String userEmail = req.getParameter("Email");
+		String userPassword =req.getParameter("Password");
 		
 		//validation user details with db data
 		userDAO userDAO = new userDAOImpl();
@@ -37,6 +37,8 @@ public class UserLogin extends HttpServlet {
 			if(userData.getPassword().equals(userPassword)) {
 				System.out.println("password correct");
 				 req.getSession().setAttribute("loggedInUser", userData); 
+				 resp.sendRedirect("GetAllRestaurants");
+
 				 
 			}else {
 				System.out.println("password wrong");
